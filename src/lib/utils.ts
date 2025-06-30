@@ -46,3 +46,18 @@ export function formatSeconds(time: number) {
 	const seconds = String(time % 60).padStart(2, "0")
 	return `${minutes}:${seconds}`
 }
+
+export function compute(a: number, b: number, operator: string) {
+	switch (operator) {
+		case "+":
+			return a + b
+		case "-":
+			return a - b
+		case "*":
+			return a * b
+		case "/":
+			return Math.floor(a / b) // assuming integer math
+		default:
+			return NaN
+	}
+}

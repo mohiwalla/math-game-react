@@ -5,7 +5,7 @@ import { Slider } from "@/components/ui/slider"
 import { Label } from "@/components/ui/label"
 import { Power } from "lucide-react"
 import { Input } from "@/components/ui/input"
-import { formatSeconds } from "@/lib/utils"
+import { compute, formatSeconds } from "@/lib/utils"
 import Result from "@/components/result"
 
 const symbols = ["+", "-", "*", "/"]
@@ -72,7 +72,9 @@ export default function Questions({
 			return
 		}
 
-		const actualAnswer = eval(currentQuestion!)
+		const [a, b] = currentQuestion!.split(symbol)
+		const actualAnswer = compute(+a, +b, symbol)
+
 		const isCorrect = +answer === actualAnswer
 
 		setResult({
