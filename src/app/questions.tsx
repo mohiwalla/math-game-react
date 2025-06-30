@@ -64,6 +64,7 @@ export default function Questions({
 
 	const secondsIntervalRef = useRef<NodeJS.Timeout>(null)
 	const [secondsElapsed, setSecondsElapsed] = useState(0)
+	const [questionStartTime, setQuestionStartTime] = useState(0)
 
 	function handleSubmit(e: FormEvent) {
 		e.preventDefault()
@@ -76,6 +77,7 @@ export default function Questions({
 		const actualAnswer = compute(+a, +b, symbol)
 
 		const isCorrect = +answer === actualAnswer
+		const timeTaken = secondsElapsed - questionStartTime
 
 		setResult({
 			incorrect: result.incorrect + (isCorrect ? 0 : 1),
@@ -83,10 +85,8 @@ export default function Questions({
 			questions: [
 				...result.questions,
 				{
+					timeTaken,
 					statement: currentQuestion!,
-					timeTaken:
-						secondsElapsed -
-						(result.questions.at(-1)?.timeTaken || 0),
 					userAnswer: +answer,
 					actualAnswer,
 				},
@@ -127,6 +127,7 @@ export default function Questions({
 		const b = Math.floor(Math.random() * level)
 
 		setCurrentQuestion(`${a} ${symbol} ${b}`)
+		setQuestionStartTime(secondsElapsed)
 	}
 
 	function startTimer() {
@@ -211,7 +212,6 @@ export default function Questions({
 					<Button
 						autoFocus
 						onClick={changeQuestion}
-						size="lg"
 						className="mx-auto"
 					>
 						Start <Power className="size-3.5" strokeWidth={3} />

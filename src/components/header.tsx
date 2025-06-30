@@ -7,7 +7,7 @@ export default function Header() {
 		<header className="sticky top-0 z-50 w-full border-b backdrop-blur">
 			<nav>
 				<div className="container mx-auto flex flex-wrap items-center justify-between py-4">
-					<Link to="/admin/dashboard" className="flex items-center">
+					<Link to="/" className="flex items-center">
 						<Logo />
 					</Link>
 

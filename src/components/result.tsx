@@ -142,7 +142,7 @@ export default function Result({
 							</span>
 						</p>
 
-						<Button onClick={onRestart} size="lg" className="gap-2">
+						<Button onClick={onRestart} className="gap-2">
 							<RotateCcw className="size-4" />
 							Try Again
 						</Button>

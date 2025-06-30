@@ -56,8 +56,8 @@ export function compute(a: number, b: number, operator: string) {
 		case "*":
 			return a * b
 		case "/":
-			return Math.floor(a / b) // assuming integer math
+			return a / b
 		default:
-			return NaN
+			return 0
 	}
 }
